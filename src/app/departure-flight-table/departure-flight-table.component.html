@@ -1,0 +1,16 @@
+<table class="table table-dark">
+  <thead>
+    <th scope="col">Flight No.</th>
+    <th scope="col">Origin</th>
+    <th scope="col">Departure Time</th>
+    <th scope="col">Status</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let departure of departures">
+      <td scope="row">{{departure.flightId}}</td>
+      <td>{{departure.destination}}</td>
+      <td>{{departure.departureTime}}</td>
+      <td>{{departure.status}}</td>
+    </tr>
+  </tbody>
+</table>
