@@ -40,6 +40,10 @@ export class FlightFacade {
   }
 
   public updateData(departures): void {
+    if (!departures || !departures.length) {
+      return;
+    }
+
     const action: number = this.getRandomNumber(3);
 
     switch (action) {
