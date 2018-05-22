@@ -11,7 +11,10 @@ import {
 
 import { FlightFacade } from './facade/flight.facade';
 import { DepartureFlightDetails } from './shared/departure-flight.interface';
-import { Store } from '@ngrx/store';
+import {
+  Store,
+  select
+} from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -25,9 +28,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private facade: FlightFacade,
-    private store: Store<any>
+    private store: Store<DepartureFlightDetails>
   ) {
-    this.store.select('departure').subscribe((departures: DepartureFlightDetails[]) => {
+    // this.store.select('departure').subscribe((departures: DepartureFlightDetails[]) => {
+    //   console.log(`app component ${departures}`);
+    //   this.handleDepartureChange(departures);
+    // });
+    this.store.pipe(select('departures')).subscribe((departures: DepartureFlightDetails[]) => {
       console.log(`app component ${departures}`);
       this.handleDepartureChange(departures);
     });
