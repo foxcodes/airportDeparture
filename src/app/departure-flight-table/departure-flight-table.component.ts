@@ -18,6 +18,6 @@ export class DepartureFlightTableComponent implements OnChanges {
  @Input() departures: DepartureFlightDetails[] = [];
 
   public ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    this.departures = this.departures;
   }
 }

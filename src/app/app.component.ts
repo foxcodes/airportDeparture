@@ -11,7 +11,10 @@ import {
 
 import { FlightFacade } from './facade/flight.facade';
 import { DepartureFlightDetails } from './shared/departure-flight.interface';
-import { Store } from '@ngrx/store';
+import {
+  Store,
+  select
+} from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -21,14 +24,13 @@ import { Store } from '@ngrx/store';
 export class AppComponent implements OnInit, OnDestroy {
   private departures: DepartureFlightDetails[] = [];
   private dataGenerator: Subscription;
-  private dataGeneratorTick: Observable<number> = interval(5000);
+  private dataGeneratorTick: Observable<number> = interval(500);
 
   constructor(
     private facade: FlightFacade,
     private store: Store<any>
   ) {
     this.store.select('departure').subscribe((departures: DepartureFlightDetails[]) => {
-      console.log(`app component ${departures}`);
       this.handleDepartureChange(departures);
     });
   }
@@ -47,12 +49,5 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public handleDepartureChange(departures: DepartureFlightDetails[]): void {
     this.departures = departures;
-  }
-
-  // mimic data changes and pass the data handling to the facade
-  
-
-  public getActionNumber(): number {
-    return Math.floor(Math.random() * Math.floor(3));
   }
 }
